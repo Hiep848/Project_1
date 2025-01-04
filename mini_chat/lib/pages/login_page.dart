@@ -21,7 +21,8 @@ class LoginPage extends StatelessWidget{
 
     // try login
     try {
-      await authService.signInWithEmailPassword(_emailController.text, _pwController.text);
+      await 
+        authService.signInWithEmailPassword(_emailController.text, _pwController.text);
     }
 
     // catch any errors
@@ -60,7 +61,7 @@ class LoginPage extends StatelessWidget{
           ),
 
           const SizedBox(height: 25),
-
+          
           // email textfield
           MyTextfield(
             hintText: "Email",
