@@ -24,10 +24,10 @@ class SettingsService {
           TextButton(
             onPressed: () async {
               try {
-                // Lấy ID của user hiện tại
+                // take current user id
                 final String userId = _auth.currentUser!.uid;
                 
-                // Xóa user từ danh sách bạn bè của người khác
+                // delete user from friends list of other users
                 final QuerySnapshot usersSnapshot = await _firestore
                   .collection("Users")
                   .get();

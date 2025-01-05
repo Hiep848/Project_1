@@ -9,7 +9,7 @@ class ChatPage extends StatefulWidget {
   final String receiverEmail;
   final String receiverID;
 
-  ChatPage({
+  const ChatPage({
     super.key,
     required this.receiverEmail,
     required this.receiverID,
@@ -41,7 +41,7 @@ class _ChatPageState extends State<ChatPage> {
       // then the ammount of remaining space will be calculated
       // then scroll down
       Future.delayed(
-        const Duration(milliseconds: 500),
+        const Duration(milliseconds: 300),
         () => scrollDown(),
       );
     }

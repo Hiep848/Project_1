@@ -63,7 +63,7 @@ class AuthService {
     try {
       final String userId = _auth.currentUser!.uid;
       
-      // 1. Xóa tất cả chat rooms liên quan
+      //  Delete all chat rooms related
       final QuerySnapshot chatRooms = await _firestore
           .collection("chat_rooms")
           .get();
@@ -74,10 +74,10 @@ class AuthService {
         }
       }
 
-      // 2. Xóa document của user trong collection Users
+      //  Xóa document của user trong collection Users
       await _firestore.collection("Users").doc(userId).delete();
 
-      // 3. Cuối cùng mới xóa user trong Authentication
+      //  Cuối cùng mới xóa user trong Authentication
       await _auth.currentUser!.delete();
       
     } on FirebaseAuthException catch (e) {
@@ -89,6 +89,5 @@ class AuthService {
       return await _auth.signOut();
     }
   // errors
-
 
 }
