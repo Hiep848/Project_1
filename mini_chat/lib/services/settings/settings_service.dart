@@ -26,27 +26,10 @@ class SettingsService {
               try {
                 // take current user id
                 final String userId = _auth.currentUser!.uid;
-                
-                // delete user from friends list of other users
-                final QuerySnapshot usersSnapshot = await _firestore
-                  .collection("Users")
-                  .get();
-              
-                for (var userDoc in usersSnapshot.docs) {
-                  if (userDoc.id != userId) {
-                   await _firestore
-                      .collection("Users")
-                      .doc(userDoc.id)
-                      .update({
-                    'friends': FieldValue.arrayRemove([userId])
-                  });
-                }
-              }
-
-                // Xóa dữ liệu user từ Firestore
+                // Delete user data from Firestore
                 await _firestore.collection("Users").doc(userId).delete();
                 
-                // Xóa các tin nhắn liên quan
+                // delete related chat rooms
                 final QuerySnapshot chatRooms = await _firestore
                     .collection("chat_rooms")
                     .get();
@@ -58,7 +41,7 @@ class SettingsService {
                 }
 
                 await _authService.deleteUser();
-                // Đóng dialog và trang settings
+                // Close dialog and settings page
                 if (context.mounted) {
                   Navigator.pop(context);
                   Navigator.pop(context);
